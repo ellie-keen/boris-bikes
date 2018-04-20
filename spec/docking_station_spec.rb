@@ -10,9 +10,8 @@ describe DockingStation do
     end
 
     it "should release a working bike" do
-        subject.dock(Bike.new)
-        bike = subject.release_bike
-        expect(bike).to be_working
+        working_bike = Bike.new
+        expect(working_bike).to be_working
     end
 
     it "should allow a bike to be docked" do
@@ -43,5 +42,14 @@ describe DockingStation do
     it "has a default capacity" do
         expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
     end
-    
+
+    #release bike
+    it 'should report to user "Broken Bike"' do
+        broken_bike = Bike.new
+        broken_bike.broken= true
+        subject.dock(broken_bike)
+        expect {subject.release_bike}.to raise_error(RuntimeError, "Broken Bike")
+    end
+
+
 end
