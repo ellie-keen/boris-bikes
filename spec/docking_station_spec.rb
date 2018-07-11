@@ -15,8 +15,6 @@ describe DockingStation do
        expect(bike).to be_working
     end
 
-
-
     it "should allow a bike to be docked" do
         expect(docking_station).to respond_to(:dock)
     end
@@ -30,7 +28,6 @@ describe DockingStation do
         DockingStation::DEFAULT_CAPACITY.times {docking_station.dock(bike)}
         expect{docking_station.dock(bike)}.to raise_exception 'Docking station full'
       end
-
     end
 
     it "states what bike is docked" do
@@ -45,5 +42,4 @@ describe DockingStation do
     it "has a default capacity" do
         expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
     end
-
 end

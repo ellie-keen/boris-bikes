@@ -4,14 +4,15 @@ describe Bike do
 
     bike = Bike.new
 
-    it 'should state if bike is working or not' do
-        expect(bike.working?).to eq true
-        expect(bike).to respond_to(:broken=)
-        expect {bike.broken = true}.to change {bike.working?}
+    it 'has broken attribute that can be set' do
+      expect(bike).to respond_to(:broken=)
     end
 
-  # three expectations... should be three clearly separated test cases,
-  # with single expection in each test
-  # i.e. 'has broken attribute which can be set to true or false'
+    it 'should state if bike is working' do
+        expect(bike.working?).to eq true
+    end
 
+    it 'state should change to not working if bike is broken' do
+      expect { bike.broken = true }.to change { bike.working? }
+    end
 end
